@@ -33,12 +33,10 @@ def get_standard_habits():
     """
     Returns list of standard habits.
     """
+    ftp.cwd("/arts/ArtsScatDbase/v1.0.0/StandardHabits/FullSet")
     names = ftp.nlst()
     names = set([s.split(".")[0] for s in names])
     return names
-
-for n in get_standard_habits():
-    __globals()__[n] = Habit(n)
 
 class FileDownload:
     def __init__(self, path):
@@ -105,3 +103,6 @@ class Habit:
 
     def __init__(self, name):
         self.name = name
+
+for n in get_standard_habits():
+    globals()[n] = Habit(n)
